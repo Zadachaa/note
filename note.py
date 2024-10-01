@@ -81,3 +81,37 @@ def delete():
         notes.pop(id)
     else:
         print("Such note does not exists")
+
+def print_notes():
+    print("Print all notes:")
+    for note in notes.values():
+        print(note)
+    print("====")
+
+def print_by_id():
+    print("Specify id:")
+    id = int(input())
+    if id in notes.keys():
+        print(notes.get(id))
+    else:
+        print("Such note does not exists")
+
+def print_by_created_date():
+    print("Specify date in format Y-m-d:")
+    date = dt.strptime(input(), "%Y-%m-%d").date()
+    filtered = []
+    for note in notes.values():
+        createdAt = dt.strptime(note.createdAt, datetime_pattern).date()
+        if (createdAt == date):
+            filtered.append(note)
+    print(filtered)
+
+def print_by_updated_date():
+    print("Specify date in format Y-m-d:")
+    date = dt.strptime(input(), "%Y-%m-%d").date()
+    filtered = []
+    for note in notes.values():
+        updatedAt = dt.strptime(note.updatedAt, datetime_pattern).date()
+        if (updatedAt == date):
+            filtered.append(note)
+    print(filtered)
