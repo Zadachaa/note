@@ -44,3 +44,40 @@ def load():
         note.updatedAt = json_note['updatedAt']
         note.createdAt = json_note['createdAt']
         update(note)
+
+def get_new_id():
+    if not notes: #is empty
+        return 0
+    else:
+        return max(notes.keys()) + 1
+
+def add():
+    print("The note name:")
+    name = input()
+    print("The note:")
+    body = input()
+    update(Note(get_new_id(), name, body))
+
+def edit():
+    print("Specify note id, which you want to edit:")
+    id = int(input())
+    if id in notes.keys():
+        print("The new note name:")
+        name = input()
+        print("The new note:")
+        body = input()
+        existed_note = notes.get(id)
+        existed_note.name = name
+        existed_note.body = body
+        existed_note.updatedAt = now_str()
+        update(existed_note)
+    else:
+        print("Such note does not exists")
+        
+def delete():
+    print("Specify note id to delete")
+    id = int(input())
+    if id in notes.keys():
+        notes.pop(id)
+    else:
+        print("Such note does not exists")
