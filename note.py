@@ -115,3 +115,43 @@ def print_by_updated_date():
         if (updatedAt == date):
             filtered.append(note)
     print(filtered)
+
+    print("Welcome to note book!")
+print("Supported commands:")
+print("* add")
+print("* list")
+print("* find")
+print("* delete")
+print("* dump")
+print("* load")
+print("* exit")
+
+while(True) :
+    print("print command")
+    input1 = input()
+
+    if input1 == 'exit':
+        break
+    elif input1 == 'list':
+        print_notes()
+    elif input1 == 'delete':
+        delete()
+    elif input1 == 'find':
+        print("How would you like to find? Available options: id, updatedAt, createdAt")
+        input2 = input()
+        if input2 == 'id':
+            print_by_id()
+        elif input2 == 'updatedAt':
+            print_by_updated_date()
+        elif input2 == 'createdAt':
+            print_by_created_date()
+    elif input1 == "add":
+        add()
+    elif input1 == "edit":
+        edit()
+    elif input1 == "dump":
+        dump()
+    elif input1 == "load":
+        load()
+    else:
+        print("no such command: " + input1 + "; try again")
